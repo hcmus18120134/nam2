@@ -7,7 +7,7 @@
 #define KEY_DOWN 80
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
-
+#include "QEquation.h"
 using namespace std;
 
 class event
@@ -35,9 +35,12 @@ bool event::isTriggered()
         if (c != '=' && c != '!')
         {
             scene->text_box->text += c;
+            scene->ans_box->text = "ANS = 0" + scene->text_box->text;
+            // QInt res = CalEquation<QInt>(scene->text_box->text);
+            // scene->ans_box->text = res.toString(10);
         }
         if (c == '=')
-            scene->text_box->text = scene->ans_box->text;
+            scene->text_box->text = scene->ans_box->text.substr(5);
         if (c == '!')
             scene->text_box->text = "";
 
@@ -47,7 +50,7 @@ bool event::isTriggered()
 }
 char event::getkey(char c)
 {
-    if (c > '0' && c < '9')
+    if (c >= '0' && c <= '9')
         return c;
     if (c == '+')
         return c;

@@ -23,8 +23,8 @@ private:
     board(int w, int h)
     {
         s = new resolution(w, h);
-        text_box = new rect(1, 1, w - 2, 1, "middle", "right");
-        ans_box = new rect(3, 1, w - 2, 1, "middle", "right");
+        text_box = new rect(1, 4, w - 2, 1, "middle", "right");
+        ans_box = new rect(1, 2, w - 2, 1, "middle", "right");
     }
     // rect *data[10];
 
@@ -64,10 +64,13 @@ public:
     }
     void update()
     {
-        for (int i = 0; i < buttons.size(); i++)
-        {
-            buttons[i]->update();
-        }
+        this->text_box->update();
+        this->ans_box->update();
+
+        // for (int i = 0; i < buttons.size(); i++)
+        // {
+        //     buttons[i]->update();
+        // }
     }
     void drawOnce();
     ~board()

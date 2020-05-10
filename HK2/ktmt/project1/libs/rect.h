@@ -28,6 +28,7 @@ public:
         s = new resolution(w, h);
         type = new align_type("middle", "center");
     };
+    void clear();
     void update();
     ~rect()
     {
@@ -36,7 +37,27 @@ public:
         delete type;
     }
 };
-
+void rect::clear()
+{
+    if (this->type->horizontal == "right")
+    {
+        for (int i = 0; i < this->s->w - 1; i++)
+        {
+            moveCursor(std::cout, this->o->x + this->s->w - 1 - i, this->o->y + this->s->h - 1);
+            cout << ' ';
+        }
+    }
+}
 void rect::update()
 {
+    this->clear();
+    // moveCursor(std::cout, this->o->x + this->s->w - 1, this->o->y + this->s->h - 1);
+    if (this->type->horizontal == "right")
+    {
+        for (int i = 0; i < min(int(this->text.size()), this->s->w - 1); i++)
+        {
+            moveCursor(std::cout, this->o->x + this->s->w - 1 - i, this->o->y + this->s->h - 1);
+            cout << this->text[this->text.size() - 1 - i];
+        }
+    }
 }

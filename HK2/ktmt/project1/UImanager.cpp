@@ -1,7 +1,8 @@
 #include <iostream>
+#include <stdlib.h>
 #include "libs/board.h"
 #include "libs/event.h"
-#include <stdlib.h>
+#include "libs/utils.h"
 using namespace std;
 
 class UImanager
@@ -21,8 +22,11 @@ int main()
     bool key;
     while (1)
     {
-        key = event::isTriggered();
-        scene->update();
+        // moveCursor(std::cout, 15, 40);
+        if (key = event::isTriggered())
+        {
+            scene->update();
+        }
     }
     return 0;
 }

@@ -56,3 +56,8 @@ public:
         horizontal = align_horizontal;
     }
 };
+
+void moveCursor(std::ostream &os, int row, int col)
+{
+    os << "\033[" << col << ";" << row << "H";
+}
