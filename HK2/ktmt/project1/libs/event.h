@@ -101,6 +101,9 @@ bool event::isTriggered()
         {
             scene->text_box->text += c2;
             scene->ans_box->text = "ANS = 0" + scene->text_box->text;
+            // add code here,
+            // request equation string type is scene->text_box->text
+            // return it to scene->ans_box->text
 
             // int res = CalEquation<int>(scene->text_box->text);
             // scene->ans_box->text = to_string(res);
