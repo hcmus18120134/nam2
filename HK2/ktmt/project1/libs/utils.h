@@ -1,13 +1,15 @@
 #pragma once
-#include <termios.h>
-#include <unistd.h>
-#include <stdio.h>
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <string>
 #include <cmath>
 using namespace std;
+
+#ifdef __linux__
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
 int getch(void)
 {
     struct termios oldattr, newattr;
@@ -20,6 +22,7 @@ int getch(void)
     tcsetattr(STDIN_FILENO, TCSANOW, &oldattr);
     return ch;
 }
+#endif
 class resolution
 {
 public:

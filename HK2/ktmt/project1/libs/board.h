@@ -29,6 +29,8 @@ private:
     // rect *data[10];
 
 public:
+    int cursor_x;
+    int cursor_y;
     rect *ans_box;
     rect *text_box;
     static board *instance(int w, int h)
@@ -57,6 +59,8 @@ public:
 
     void reset()
     {
+        this->cursor_y = 0;
+        this->cursor_x = 0;
         for (int i = 0; i < this->s->h; i++)
             for (int j = 0; j < this->s->w; j++)
             {
@@ -64,6 +68,10 @@ public:
     }
     void update()
     {
+        this->cursor_y = min(this->cursor_y, 3);
+        this->cursor_y = max(this->cursor_y, 0);
+        this->cursor_x = min(this->cursor_x, 5);
+        this->cursor_x = max(this->cursor_x, 0);
         this->text_box->update();
         this->ans_box->update();
 
@@ -87,6 +95,11 @@ board *board::p = NULL;
 
 void board::drawOnce()
 {
+
+#ifdef __linux__
+    printf("\033c");
+#endif
+    moveCursor(std::cout, 0, 0);
     for (int i = 0; i < MAX_ROW; i++)
     {
         cout << data[i];
